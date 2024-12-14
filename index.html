@@ -38,42 +38,44 @@
         }
         /* Image viewer styles */
         .viewer {
-            display: none;
-            position: fixed;
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position to cover the entire viewport */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            z-index: 1000; /* Ensure viewer is above other content */
         }
 
         .viewer img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; /* Limit image width */
+            max-height: 90%; /* Limit image height */
+            transition: transform 0.2s; /* Smooth transition for scaling */
         }
 
         .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
+            position: absolute; /* Position relative to the viewer */
+            top: 20px; /* Distance from the top */
+            right: 30px; /* Distance from the right */
+            color: white; /* White color for visibility */
+            font-size: 30px; /* Font size for the close button */
+            cursor: pointer; /* Pointer cursor on hover */
         }
 
         .nav-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 20px;
+            position: absolute; /* Position relative to the viewer */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust for button height */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border: none; /* Remove default border */
+            padding: 10px; /* Padding for buttons */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 20px; /* Font size for buttons */
             z-index: 1001; /* Ensure buttons are above the image */
+            border-radius: 5px; /* Rounded corners for buttons */
         }
 
         .prev {
@@ -83,6 +85,170 @@
         .next {
             right: 20px; /* Position the next button on the right */
         }
+
+        /* Optional: Add hover effect for buttons */
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+        }
+
+        /* Style for zoom buttons container */
+        .zoom-controls {
+            display: flex;
+            flex-direction: row; /* Ensure horizontal alignment */
+            justify-content: center; /* Center the buttons horizontally */
+            position: absolute;
+            bottom: 20px; /* Distance from the bottom of the viewer */
+            left: 50%; /* Center horizontally in the viewer */
+            transform: translateX(-50%);
+            z-index: 1002; /* Ensure buttons are above other elements */
+            gap: 10px; /* Space between buttons */
+        }
+
+        /* Make zoom buttons circular */
+        #zoomIn, #zoomOut, #resetZoom {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px; /* Set a fixed width for circular buttons */
+            height: 50px; /* Set a fixed height for circular buttons */
+            cursor: pointer;
+            font-size: 22px; /* Larger font size to fit inside the circle */
+            border-radius: 50%; /* Make them circular */
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the symbols inside the circle */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1002;
+        }
+
+        #zoomIn:hover, #zoomOut:hover, #resetZoom:hover {
+            background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 480px) {
+            .zoom-controls {
+                bottom: 10px; /* Slightly closer to the bottom */
+                flex-direction: row; /* Ensure horizontal alignment */
+            }
+
+            #zoomIn, #zoomOut, #resetZoom {
+                font-size: 18px; /* Adjust text size for mobile */
+                width: 45px; /* Adjust button size */
+                height: 45px; /* Adjust button size */
+            }
+        }
+
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+
+            h1 {
+                font-size: 1.5em; /* Adjust heading size */
+            }
+
+            .gallery {
+                margin: 10px 0;
+                padding: 5px;
+            }
+
+            .gallery img {
+                height: auto; /* Allow images to adjust their height */
+                width: 100%; /* Make images fill their containers */
+                max-width: 300px; /* Limit image width for better appearance */
+            }
+
+            .gallery-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .viewer img {
+                max-width: 100%; /* Ensure the image fits within the screen */
+                max-height: 70%; /* Leave space for zoom controls */
+            }
+
+            .close {
+                font-size: 20px; /* Adjust the close button size */
+                top: 10px;
+                right: 15px;
+            }
+
+            .nav-button {
+                font-size: 16px; /* Adjust navigation button size */
+                padding: 8px;
+            }
+
+            .zoom-controls {
+                gap: 5px; /* Reduce spacing between zoom buttons */
+                bottom: 10px; /* Adjust position */
+            }
+
+            #zoomIn, #zoomOut, #resetZoom {
+                font-size: 14px; /* Adjust button text size */
+                padding: 8px 10px; /* Smaller button size */
+            }
+        }
+
+        /* Media query for very small screens (e.g., phones) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em; /* Further reduce heading size */
+            }
+
+            .gallery img {
+                max-width: 100%; /* Images should take up the full width */
+            }
+
+            .zoom-controls {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center; /* Center align them */
+                gap: 3px; /* Reduce gaps further */
+            }
+
+            #zoomIn, #zoomOut, #resetZoom {
+                width: 80%; /* Make buttons easier to tap */
+                font-size: 12px; /* Adjust size for smaller screens */
+            }
+        }
+
+
+        /* Adjust viewer navigation buttons for mobile */
+        .nav-button {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%);
+            width: 50px; /* Increase tappable area */
+            height: 50px;
+            font-size: 20px;
+            z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent for better visibility */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Reduce button size for smaller screens */
+        @media (max-width: 480px) {
+            .nav-button {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .zoom-controls {
+                bottom: 15px; /* Slightly higher placement */
+            }
+        }
+
+
+        
     </style>
 </head>
 <body>
@@ -129,6 +295,11 @@
         <img id="viewerImage" src="" alt="Viewer Image">
         <button class="nav-button prev" onclick="changeImage(-1)">&#10094;</button>
         <button class="nav-button next" onclick="changeImage(1)">&#10095;</button>
+        <div class="zoom-controls">
+            <button id="zoomIn">&#43;</button> <!-- Zoom In -->
+            <button id="resetZoom">&#x21BB;</button> <!-- Reset Zoom -->
+            <button id="zoomOut">&minus;</button> <!-- Zoom Out -->
+        </div>
     </div>
 
 
@@ -185,6 +356,40 @@
             }
         });
 
+        let currentScale = 1; // Keep track of the current zoom scale
+
+        function zoomImage(scaleChange) {
+            const viewerImage = document.getElementById('viewerImage');
+            currentScale += scaleChange; // Adjust scale
+            currentScale = Math.min(Math.max(currentScale, 0.5), 3); // Clamp scale between 0.5 and 3
+            viewerImage.style.transform = `scale(${currentScale})`; // Apply scaling
+        }
+
+        // Zoom with scroll wheel
+        document.getElementById('imageViewer').addEventListener('wheel', function(event) {
+            if (document.getElementById('imageViewer').style.display === 'flex') {
+                event.preventDefault(); // Prevent default scroll behavior
+                const scaleChange = event.deltaY < 0 ? 0.1 : -0.1; // Zoom in or out
+                zoomImage(scaleChange);
+            }
+        });
+
+        // Zoom buttons
+        document.getElementById('zoomIn').addEventListener('click', function() {
+            zoomImage(0.1); // Zoom in
+        });
+
+        document.getElementById('zoomOut').addEventListener('click', function() {
+            zoomImage(-0.1); // Zoom out
+        });
+
+        // Reset Zoom button
+        document.getElementById('resetZoom').addEventListener('click', function() {
+            const viewerImage = document.getElementById('viewerImage');
+            currentScale = 1; // Reset the scale to default
+            viewerImage.style.transform = `scale(${currentScale})`; // Apply reset
+        });
+
         //gallery4 script
         const imageCount = 16; // Total number of images
         const galleryContainer = document.getElementById('gallery-container');
@@ -196,6 +401,173 @@
             img.setAttribute('onclick', `openViewer(3, ${i - 1})`); // Set onclick attribute directly
             galleryContainer.appendChild(img);
         }
+
+        //mobile swiping
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let initialDistance = 0;
+
+        /* Detect swipe gestures */
+        document.getElementById('imageViewer').addEventListener('touchstart', (event) => {
+            if (event.touches.length === 1) {
+                // Single touch for swipe
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+            } else if (event.touches.length === 2) {
+                // Pinch-to-zoom gesture
+                initialDistance = getDistance(event.touches[0], event.touches[1]);
+            }
+        });
+
+        document.getElementById('imageViewer').addEventListener('touchmove', (event) => {
+            if (event.touches.length === 1) {
+                const touchEndX = event.touches[0].clientX;
+                const touchEndY = event.touches[0].clientY;
+
+                // Detect horizontal swipe
+                if (Math.abs(touchEndX - touchStartX) > 50) {
+                    if (touchEndX < touchStartX) {
+                        changeImage(1); // Swipe left -> next image
+                    } else {
+                        changeImage(-1); // Swipe right -> previous image
+                    }
+                    touchStartX = touchEndX; // Reset starting position
+                }
+            } else if (event.touches.length === 2) {
+                // Handle pinch-to-zoom
+                const currentDistance = getDistance(event.touches[0], event.touches[1]);
+                const scaleChange = (currentDistance - initialDistance) / 300; // Adjust sensitivity
+                zoomImage(scaleChange);
+                initialDistance = currentDistance; // Update initial distance
+            }
+        });
+
+        /* Utility to calculate distance between two touch points */
+        function getDistance(touch1, touch2) {
+            const dx = touch2.clientX - touch1.clientX;
+            const dy = touch2.clientY - touch1.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+
+        // Prevent touch conflicts with zoom buttons
+        document.querySelectorAll('#zoomIn, #zoomOut, #resetZoom').forEach((button) => {
+            button.addEventListener('touchstart', (event) => {
+                event.stopPropagation(); // Prevent touch events from propagating to the viewer
+            });
+        });
+
+        // Ensure pinch-to-zoom and button scaling don't conflict
+        function zoomImage(scaleChange) {
+            const viewerImage = document.getElementById('viewerImage');
+            currentScale = Math.min(Math.max(currentScale + scaleChange, 0.5), 3); // Clamp scale
+            viewerImage.style.transform = `scale(${currentScale})`;
+        }
+
+        // Reset Zoom Button Functionality
+        document.getElementById('resetZoom').addEventListener('click', function () {
+            const viewerImage = document.getElementById('viewerImage');
+            currentScale = 1; // Reset scale to default
+            viewerImage.style.transform = `scale(${currentScale})`;
+        });
+
+        // Ensure zoom buttons function correctly
+        document.getElementById('zoomIn').addEventListener('click', function () {
+            zoomImage(0.1); // Zoom in
+        });
+
+        document.getElementById('zoomOut').addEventListener('click', function () {
+            zoomImage(-0.1); // Zoom out
+        });
+
+        let isDragging = false;
+        let startX, startY;
+        let offsetX = 0, offsetY = 0; // Track image position during dragging
+
+        // Get the image element
+        const viewerImage = document.getElementById('viewerImage');
+
+        // Start dragging when mouse button or thumb is pressed (touch or mouse)
+        viewerImage.addEventListener('mousedown', (event) => {
+            if (currentScale <= 1) return; // Only allow dragging when zoomed in
+            isDragging = true;
+            startX = event.clientX - offsetX;
+            startY = event.clientY - offsetY;
+            viewerImage.style.cursor = 'grabbing'; // Change cursor when dragging
+        });
+
+        // Drag the image when mouse moves
+        document.addEventListener('mousemove', (event) => {
+            if (!isDragging) return;
+            offsetX = event.clientX - startX;
+            offsetY = event.clientY - startY;
+            // Apply translation while maintaining zoom scale
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`;
+        });
+
+        // Stop dragging when the mouse button is released
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            viewerImage.style.cursor = 'grab'; // Reset cursor when mouse is released
+        });
+
+        // Touch events for dragging on mobile (same logic as mouse events)
+        viewerImage.addEventListener('touchstart', (event) => {
+            if (currentScale <= 1) return; // Prevent dragging when not zoomed in
+            isDragging = true;
+            startX = event.touches[0].clientX - offsetX;
+            startY = event.touches[0].clientY - offsetY;
+            viewerImage.style.cursor = 'grabbing'; // Change cursor when dragging
+        });
+
+        document.addEventListener('touchmove', (event) => {
+            if (!isDragging) return;
+            offsetX = event.touches[0].clientX - startX;
+            offsetY = event.touches[0].clientY - startY;
+            // Apply translation while maintaining zoom scale
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`;
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            viewerImage.style.cursor = 'grab'; // Reset cursor when touch is released
+        });
+
+        // Zooming functionality (adjust scale)
+        function zoomImage(scaleChange) {
+            currentScale = Math.min(Math.max(currentScale + scaleChange, 1), 3); // Clamp scale between 1 and 3
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`; // Apply scale and position
+
+            // Recalculate offset to keep image in place after zooming
+            const viewerRect = document.getElementById('imageViewer').getBoundingClientRect();
+            const imageRect = viewerImage.getBoundingClientRect();
+
+            const maxX = viewerRect.width - imageRect.width * currentScale;
+            const maxY = viewerRect.height - imageRect.height * currentScale;
+
+            offsetX = Math.min(0, Math.max(maxX, offsetX));
+            offsetY = Math.min(0, Math.max(maxY, offsetY));
+
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`;
+        }
+
+        // Zoom In and Zoom Out button events
+        document.getElementById('zoomIn').addEventListener('click', () => {
+            zoomImage(0.1); // Zoom in
+        });
+
+        document.getElementById('zoomOut').addEventListener('click', () => {
+            zoomImage(-0.1); // Zoom out
+        });
+
+        // Reset Zoom button event
+        document.getElementById('resetZoom').addEventListener('click', () => {
+            currentScale = 1; // Reset zoom scale
+            offsetX = 0; // Reset position
+            offsetY = 0; // Reset position
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`;
+        });
+
 
     </script>
     <footer>
