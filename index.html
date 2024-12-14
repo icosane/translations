@@ -257,29 +257,29 @@
     <div class="gallery">
         <h2>@putimaxi</h2>
         <div class="gallery-container">
-            <img src="@putimaxi/cpxGWE9qNJw.jpg" alt="Image 1" onclick="openViewer(0, 0)">
-            <img src="@putimaxi/DwCg2FT5QKU.jpg" alt="Image 2" onclick="openViewer(0, 1)">
-            <img src="@putimaxi/p6RErH5U0H0.jpg" alt="Image 3" onclick="openViewer(0, 2)">
+            <img src="@putimaxi/cpxGWE9qNJw.jpg" alt="Image 1" loading="lazy" onclick="openViewer(0, 0)">
+            <img src="@putimaxi/DwCg2FT5QKU.jpg" alt="Image 2" loading="lazy" onclick="openViewer(0, 1)">
+            <img src="@putimaxi/p6RErH5U0H0.jpg" alt="Image 3" loading="lazy" onclick="openViewer(0, 2)">
         </div>
     </div>    
     
     <div class="gallery">
         <h2>Glasses You Can't Talk About After Seeing With Them</h2>
         <div class="gallery-container">
-            <img src="Glasses that you can't talk about even if you see them/01.jpg" alt="Image 1" onclick="openViewer(1, 0)">
-            <img src="Glasses that you can't talk about even if you see them/02.jpg" alt="Image 2" onclick="openViewer(1, 1)">
-            <img src="Glasses that you can't talk about even if you see them/03.jpg" alt="Image 3" onclick="openViewer(1, 2)">
-            <img src="Glasses that you can't talk about even if you see them/04.jpg" alt="Image 4" onclick="openViewer(1, 3)">
+            <img src="Glasses that you can't talk about even if you see them/01.jpg" alt="Image 1" loading="lazy" onclick="openViewer(1, 0)">
+            <img src="Glasses that you can't talk about even if you see them/02.jpg" alt="Image 2" loading="lazy" onclick="openViewer(1, 1)">
+            <img src="Glasses that you can't talk about even if you see them/03.jpg" alt="Image 3" loading="lazy" onclick="openViewer(1, 2)">
+            <img src="Glasses that you can't talk about even if you see them/04.jpg" alt="Image 4" loading="lazy" onclick="openViewer(1, 3)">
         </div>
     </div>
     
     <div class="gallery">
         <h2>Magudala de Nemure</h2>
         <div class="gallery-container">
-            <img src="Magudala de Nemure ru/01.jpg" alt="Image 1" onclick="openViewer(2, 0)">
-            <img src="Magudala de Nemure ru/02.jpg" alt="Image 2" onclick="openViewer(2, 1)">
-            <img src="Magudala de Nemure ru/03.jpg" alt="Image 3" onclick="openViewer(2, 2)">
-            <img src="Magudala de Nemure ru/04.jpg" alt="Image 4" onclick="openViewer(2, 3)">
+            <img src="Magudala de Nemure ru/01.jpg" alt="Image 1" loading="lazy" onclick="openViewer(2, 0)">
+            <img src="Magudala de Nemure ru/02.jpg" alt="Image 2" loading="lazy" onclick="openViewer(2, 1)">
+            <img src="Magudala de Nemure ru/03.jpg" alt="Image 3" loading="lazy" onclick="openViewer(2, 2)">
+            <img src="Magudala de Nemure ru/04.jpg" alt="Image 4" loading="lazy" onclick="openViewer(2, 3)">
         </div>
     </div>    
 
@@ -398,6 +398,7 @@
             const img = document.createElement('img');
             img.src = `Out of Season Healthy Summer Party ru/${String(i).padStart(2, '0')}.jpg`; // Adjust the path as needed
             img.alt = `Image ${i}`;
+            img.setAttribute('loading', 'lazy');
             img.setAttribute('onclick', `openViewer(3, ${i - 1})`); // Set onclick attribute directly
             galleryContainer.appendChild(img);
         }
