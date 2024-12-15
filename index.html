@@ -336,6 +336,11 @@
 
         function closeViewer() {
             const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            currentScale = 1; // Reset the scale to default
+            offsetX = 0; // Reset position
+            offsetY = 0; // Reset position
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`; // Apply reset
             viewer.style.display = 'none';
         }
 
@@ -343,13 +348,21 @@
             const galleryImages = document.querySelectorAll(`.gallery:nth-of-type(${currentGalleryIndex + 1}) .gallery-container img`);
             const images = Array.from(galleryImages).map(img => img.src); // Update images array
             currentIndex += direction;
+
             if (currentIndex < 0) {
                 currentIndex = images.length - 1; // Loop to last image
             } else if (currentIndex >= images.length) {
                 currentIndex = 0; // Loop to first image
             }
+
             const viewerImage = document.getElementById('viewerImage');
             viewerImage.src = images[currentIndex];
+
+            // Reset zoom and position
+            currentScale = 1; // Reset the scale to default
+            offsetX = 0; // Reset position
+            offsetY = 0; // Reset position
+            viewerImage.style.transform = `scale(${currentScale}) translate(${offsetX}px, ${offsetY}px)`; // Apply reset
         }
 
         // Keyboard navigation
